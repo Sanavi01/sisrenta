@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Table(name = "alquileres")
-@Getter
+@Getter(AccessLevel.NONE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Alquiler {
 
@@ -107,5 +108,17 @@ public class Alquiler {
                 .cantidad(cantidad)
                 .precioUnitario(precioUnitario)
                 .build();
+
+        this.itemsAlquiler.add(itemAlquiler);
+    }
+
+    public int calcularTotal(){
+        return itemsAlquiler.stream()
+                .mapToInt(ItemAlquiler::subtotal)
+                .sum();
+    }
+
+    public List<ItemAlquiler> getItemsAlquiler() {
+        return Collections.unmodifiableList(itemsAlquiler);
     }
 }
