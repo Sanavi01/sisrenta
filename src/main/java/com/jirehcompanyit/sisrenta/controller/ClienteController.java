@@ -19,6 +19,9 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    // ---------------------------
+    // POST /clientes
+    // ---------------------------
     @PostMapping
     public ResponseEntity<ClienteResponse> registrarCliente(
             @Valid @RequestBody RegistrarClienteRequest request) {
@@ -36,7 +39,11 @@ public class ClienteController {
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-@GetMapping("/buscar")
+
+    // ---------------------------
+    // GET /clientes?celular=...
+    // ---------------------------
+@GetMapping
     public ResponseEntity<ClienteResponse> buscarClientePorCelular(
             @Valid @RequestParam String celular) {
         Cliente cliente = clienteService.buscarClientePorCelular(celular);
@@ -49,5 +56,4 @@ public class ClienteController {
         );
         return ResponseEntity.ok(response);
     }
-
 }
