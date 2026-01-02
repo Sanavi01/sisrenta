@@ -1,6 +1,5 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.BuscarClienteRequest;
 import com.jirehcompanyit.sisrenta.controller.dto.ClienteResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.RegistrarClienteRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
