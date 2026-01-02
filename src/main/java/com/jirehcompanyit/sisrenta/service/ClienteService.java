@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.service;
 
+import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.repository.ClienteRepository;
@@ -17,12 +18,17 @@ public class ClienteService {
     }
 
     public Cliente registrarCliente(String nombre, String apellido, String celular) {
-        if (clienteRepository.existsByCelular(celular)) {
-            Cliente clienteEncontrado = clienteRepository.findClienteByCelular(celular);
-            throw new ClienteYaExisteException("Este numero ya ha sido registrado en el cliente"
-                    + clienteEncontrado.getNombre()
-                    + clienteEncontrado.getApellido());
-        }
+
+        clienteRepository.findClienteByCelular(celular)
+                .ifPresent(clienteEncontrado ->{
+                    throw new ClienteYaExisteException(
+                            "Este numero ya ha sido registrado en el cliente"
+                            + clienteEncontrado. getNombre()
+                            + " "
+                            + clienteEncontrado.getApellido()
+                    );
+                });
+
         Cliente cliente = Cliente.builder()
                 .nombre(nombre)
                 .apellido(apellido)
@@ -30,6 +36,11 @@ public class ClienteService {
                 .build();
 
         return clienteRepository.save(cliente);
+    }
+
+    public Cliente buscarClientePorCelular(String celular){
+        return clienteRepository.findClienteByCelular(celular)
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
     }
 
 }
