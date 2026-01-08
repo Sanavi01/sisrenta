@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "alquileres")
-@Getter(AccessLevel.NONE)
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Alquiler {
 
