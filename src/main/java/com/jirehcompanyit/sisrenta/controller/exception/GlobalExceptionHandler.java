@@ -1,6 +1,11 @@
 package com.jirehcompanyit.sisrenta.controller.exception;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.*;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.NuevoCelularEsIgualAlAnteriorException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

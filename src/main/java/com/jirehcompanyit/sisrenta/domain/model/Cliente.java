@@ -1,6 +1,6 @@
 package com.jirehcompanyit.sisrenta.domain.model;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.NuevoCelularEsIgualAlAnteriorException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.NuevoCelularEsIgualAlAnteriorException;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.EmpleadoResponse;
-import com.jirehcompanyit.sisrenta.controller.dto.RegistrarEmpleadoRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponse;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.service.EmpleadoService;
 import org.springframework.http.HttpStatus;

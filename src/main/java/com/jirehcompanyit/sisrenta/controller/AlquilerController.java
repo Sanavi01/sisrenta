@@ -1,9 +1,8 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.RegistrarAlquilerRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarAlquilerRequest;
 import com.jirehcompanyit.sisrenta.controller.dto.RegistrarAlquilerResponse;
 import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
-import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.service.AlquilerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

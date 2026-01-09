@@ -1,7 +1,7 @@
 package com.jirehcompanyit.sisrenta.service;
 
 import com.jirehcompanyit.sisrenta.domain.enums.RolEmpleado;
-import com.jirehcompanyit.sisrenta.domain.exceptions.EmpleadoYaExisteException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;

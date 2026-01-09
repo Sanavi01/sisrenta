@@ -1,7 +1,7 @@
 package com.jirehcompanyit.sisrenta.service;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.EmpleadoNoEncontradoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;

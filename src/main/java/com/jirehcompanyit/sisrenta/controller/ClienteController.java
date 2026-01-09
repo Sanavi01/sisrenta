@@ -1,8 +1,8 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.ActualizarCelularClienteRequest;
-import com.jirehcompanyit.sisrenta.controller.dto.ClienteResponse;
-import com.jirehcompanyit.sisrenta.controller.dto.RegistrarClienteRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.ActualizarCelularClienteRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.ClienteResponse;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.RegistrarClienteRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.service.ClienteService;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.jirehcompanyit.sisrenta.controller.dto;
+package com.jirehcompanyit.sisrenta.controller.dto.cliente;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

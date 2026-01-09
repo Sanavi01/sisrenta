@@ -1,4 +1,4 @@
-package com.jirehcompanyit.sisrenta.controller.dto;
+package com.jirehcompanyit.sisrenta.controller.dto.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

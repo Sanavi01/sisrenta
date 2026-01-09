@@ -1,8 +1,8 @@
 package com.jirehcompanyit.sisrenta.service;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteEstaActivoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteYaExisteException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
