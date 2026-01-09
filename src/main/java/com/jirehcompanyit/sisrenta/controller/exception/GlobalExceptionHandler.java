@@ -4,6 +4,7 @@ import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoEx
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.NuevoCelularEsIgualAlAnteriorException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoEstaActivoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ClienteEstaActivoException.class)
     public ResponseEntity<String> handleClienteEstaActivo(ClienteEstaActivoException exception) {
-        return  ResponseEntity
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
+    }
+
+    @ExceptionHandler(EmpleadoEstaActivoException.class)
+    public ResponseEntity<String> handleEmpleadoEstaActivo(EmpleadoEstaActivoException exception) {
+        return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }

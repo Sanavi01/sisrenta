@@ -1,7 +1,7 @@
 package com.jirehcompanyit.sisrenta.service;
 
 import com.jirehcompanyit.sisrenta.domain.enums.RolEmpleado;
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoEstaActivoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
@@ -71,6 +71,39 @@ public class EmpleadoService {
         empleadoActualizar.actualizarEmpleado(celular, direccion);
 
         return empleadoRepository.save(empleadoActualizar);
+    }
+
+    public Empleado activarEmpleado(Long id) {
+
+        Empleado empleadoEncontrado = buscarEmpleadoPorId(id);
+        if (empleadoEncontrado.isActivo()) {
+            throw new EmpleadoEstaActivoException(
+                    "El empleado "
+                            + empleadoEncontrado.getNombre()
+                            + " "
+                            + empleadoEncontrado.getApellido()
+                            + " ya esta activo en el sistema"
+            );
+        }
+        empleadoEncontrado.activar();
+
+        return empleadoRepository.save(empleadoEncontrado);
+    }
+
+    public Empleado desactivarEmpleado(Long id) {
+        Empleado empleadoEncontrado = buscarEmpleadoPorId(id);
+        if (!empleadoEncontrado.isActivo()) {
+            throw new EmpleadoEstaActivoException(
+                    "El empleado "
+                            + empleadoEncontrado.getNombre()
+                            + " "
+                            + empleadoEncontrado.getApellido()
+                            + " ya esta desactivado en el sistema"
+            );
+        }
+        empleadoEncontrado.desactivar();
+
+        return empleadoRepository.save(empleadoEncontrado);
     }
 
 

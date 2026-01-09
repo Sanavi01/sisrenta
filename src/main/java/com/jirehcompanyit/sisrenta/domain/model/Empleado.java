@@ -44,7 +44,7 @@ public class Empleado {
         this.activo = true;
     }
 
-    public void actualizarEmpleado(String celular, String direccion){
+    public void actualizarEmpleado(String celular, String direccion) {
         if (celular != null) {
             this.celular = celular;
         }
@@ -53,15 +53,15 @@ public class Empleado {
         }
     }
 
-    public void activar(){
+    public void activar() {
         this.activo = true;
     }
 
-    public void desactivar(){
+    public void desactivar() {
         this.activo = false;
     }
 
-    public boolean esAdmin (){
+    public boolean esAdmin() {
         return this.rol == RolEmpleado.ADMIN;
     }
 

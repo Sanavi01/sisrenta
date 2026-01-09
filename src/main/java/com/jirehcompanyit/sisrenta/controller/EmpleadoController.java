@@ -79,4 +79,38 @@ public class EmpleadoController {
 
         return ResponseEntity.status(HttpStatus.OK).body((response));
     }
+
+    @PatchMapping("/{id}/activar")
+    public ResponseEntity<EmpleadoResponse> activarEmpleado(
+            @PathVariable("id") Long id) {
+
+        Empleado empleado = empleadoService.activarEmpleado(id);
+
+        EmpleadoResponse response = new EmpleadoResponse(
+                empleado.getId(),
+                empleado.getNombre(),
+                empleado.getApellido(),
+                empleado.getCelular(),
+                empleado.getDireccion()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PatchMapping("/{id}/desactivar")
+    public ResponseEntity<EmpleadoResponse> desactivarEmpleado(
+            @PathVariable("id") Long id) {
+
+        Empleado empleado = empleadoService.desactivarEmpleado(id);
+
+        EmpleadoResponse response = new EmpleadoResponse(
+                empleado.getId(),
+                empleado.getNombre(),
+                empleado.getApellido(),
+                empleado.getCelular(),
+                empleado.getDireccion()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
