@@ -20,12 +20,12 @@ public class ClienteService {
     public Cliente registrarCliente(String nombre, String apellido, String celular) {
 
         clienteRepository.findClienteByCelular(celular)
-                .ifPresent(clienteEncontrado ->{
+                .ifPresent(clienteEncontrado -> {
                     throw new ClienteYaExisteException(
                             "Este numero ya ha sido registrado en el cliente"
-                            + clienteEncontrado. getNombre()
-                            + " "
-                            + clienteEncontrado.getApellido()
+                                    + clienteEncontrado.getNombre()
+                                    + " "
+                                    + clienteEncontrado.getApellido()
                     );
                 });
 
@@ -38,9 +38,29 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente buscarClientePorCelular(String celular){
+    public Cliente buscarClientePorCelular(String celular) {
         return clienteRepository.findClienteByCelular(celular)
                 .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
+    }
+
+    public Cliente buscarClientePorId(Long id) {
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
+    }
+
+    public Cliente actualizarCelular(Long id, String nuevoCelular) {
+        Cliente clienteEncontrado = buscarClientePorId(id);
+
+        clienteRepository.findClienteByCelular(nuevoCelular)
+                .filter(c -> !c.getId().equals(clienteEncontrado.getId()))
+                .ifPresent(c -> {
+                    throw new ClienteYaExisteException(
+                            "El celular ya pertenece a otro cliente"
+                    );
+                });
+
+        clienteEncontrado.actualizarCelular(nuevoCelular);
+        return clienteRepository.save(clienteEncontrado);
     }
 
 }

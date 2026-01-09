@@ -1,9 +1,6 @@
 package com.jirehcompanyit.sisrenta.controller.exception;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteYaExisteException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.EmpleadoNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.EmpleadoYaExisteException;
+import com.jirehcompanyit.sisrenta.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,10 +29,18 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }
+
     @ExceptionHandler(EmpleadoNoEncontradoException.class)
     public ResponseEntity<String> handleEmpleadoNoEncontrado(EmpleadoNoEncontradoException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(exception.getMessage());
+    }
+
+    @ExceptionHandler(NuevoCelularEsIgualAlAnteriorException.class)
+    public ResponseEntity<String> handleNuevoCelularEsIgualAlAnterior(NuevoCelularEsIgualAlAnteriorException exception) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }
 }

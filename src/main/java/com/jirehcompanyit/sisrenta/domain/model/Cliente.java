@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.domain.model;
 
+import com.jirehcompanyit.sisrenta.domain.exceptions.NuevoCelularEsIgualAlAnteriorException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +36,13 @@ public class Cliente {
         this.apellido = apellido;
         this.celular = celular;
         this.activo = true;
+    }
+
+    public void actualizarCelular(String nuevoCelular) {
+        if (this.celular.equals(nuevoCelular)) {
+            throw new NuevoCelularEsIgualAlAnteriorException("El nuevo celular que esta intentando registrar es igual al que ya esta en la base de datos");
+        }
+        this.celular = nuevoCelular;
     }
 
     public void desactivar() {

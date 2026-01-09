@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.controller;
 
+import com.jirehcompanyit.sisrenta.controller.dto.ActualizarCelularClienteRequest;
 import com.jirehcompanyit.sisrenta.controller.dto.ClienteResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.RegistrarClienteRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
@@ -43,7 +44,7 @@ public class ClienteController {
     // ---------------------------
     // GET /clientes?celular=...
     // ---------------------------
-@GetMapping
+    @GetMapping
     public ResponseEntity<ClienteResponse> buscarClientePorCelular(
             @Valid @RequestParam String celular) {
         Cliente cliente = clienteService.buscarClientePorCelular(celular);
@@ -55,5 +56,26 @@ public class ClienteController {
                 cliente.getCelular()
         );
         return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClienteResponse> actualizarCelularCliente(
+            @Valid @PathVariable("id") Long id,
+            @RequestBody ActualizarCelularClienteRequest request) {
+
+        System.out.println("id Controller: " + id);
+        Cliente clienteEditado = clienteService.actualizarCelular(
+                id,
+                request.getNuevoCelular()
+        );
+
+        ClienteResponse response = new ClienteResponse(
+                clienteEditado.getId(),
+                clienteEditado.getNombre(),
+                clienteEditado.getApellido(),
+                clienteEditado.getCelular()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
