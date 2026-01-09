@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.service;
 
+import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteEstaActivoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.ClienteYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
@@ -60,6 +61,34 @@ public class ClienteService {
                 });
 
         clienteEncontrado.actualizarCelular(nuevoCelular);
+        return clienteRepository.save(clienteEncontrado);
+    }
+
+    public Cliente desactivarCliente(Long id) {
+        Cliente clienteEncontrado = buscarClientePorId(id);
+        if (!clienteEncontrado.isActivo()) {
+            throw new ClienteEstaActivoException(
+                    "El cliente "
+                            + clienteEncontrado.getNombre()
+                            + " "
+                            + clienteEncontrado.getApellido()
+                            + " ya esta desactivado ");
+        }
+        clienteEncontrado.desactivar();
+        return clienteRepository.save(clienteEncontrado);
+    }
+
+    public Cliente activarCliente(Long id) {
+        Cliente clienteEncontrado = buscarClientePorId(id);
+        if (clienteEncontrado.isActivo()) {
+            throw new ClienteEstaActivoException(
+                    "El cliente "
+                            + clienteEncontrado.getNombre()
+                            + " "
+                            + clienteEncontrado.getApellido()
+                            + " ya esta activo ");
+        }
+        clienteEncontrado.activar();
         return clienteRepository.save(clienteEncontrado);
     }
 

@@ -43,4 +43,11 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }
+
+    @ExceptionHandler(ClienteEstaActivoException.class)
+    public ResponseEntity<String> handleClienteEstaActivo(ClienteEstaActivoException exception) {
+        return  ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
+    }
 }

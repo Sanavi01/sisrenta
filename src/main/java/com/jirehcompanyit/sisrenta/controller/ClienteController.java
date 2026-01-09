@@ -58,10 +58,14 @@ public class ClienteController {
         return ResponseEntity.ok(response);
     }
 
+    // ---------------------------
+    // PATCH /clientes/id
+    // ---------------------------
+
     @PatchMapping("/{id}")
     public ResponseEntity<ClienteResponse> actualizarCelularCliente(
-            @Valid @PathVariable("id") Long id,
-            @RequestBody ActualizarCelularClienteRequest request) {
+            @PathVariable("id") Long id,
+            @Valid @RequestBody ActualizarCelularClienteRequest request) {
 
         System.out.println("id Controller: " + id);
         Cliente clienteEditado = clienteService.actualizarCelular(
@@ -78,4 +82,45 @@ public class ClienteController {
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    // ---------------------------
+    // PATCH /clientes/id/activar
+    // ---------------------------
+
+    @PatchMapping("/{id}/activar")
+    public ResponseEntity<ClienteResponse> activarCliente(
+            @PathVariable("id") Long id) {
+
+        Cliente clienteActivado = clienteService.activarCliente(id);
+
+        ClienteResponse response = new ClienteResponse(
+                clienteActivado.getId(),
+                clienteActivado.getNombre(),
+                clienteActivado.getApellido(),
+                clienteActivado.getCelular()
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    // ---------------------------
+    // PATCH /clientes/id/desactivar
+    // -------
+
+    @PatchMapping("/{id}/desactivar")
+    public ResponseEntity<ClienteResponse> desactivarCliente(
+            @PathVariable("id") Long id) {
+
+        Cliente clienteDesactivado = clienteService.desactivarCliente(id);
+
+        ClienteResponse response = new ClienteResponse(
+                clienteDesactivado.getId(),
+                clienteDesactivado.getNombre(),
+                clienteDesactivado.getApellido(),
+                clienteDesactivado.getCelular()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
 }
