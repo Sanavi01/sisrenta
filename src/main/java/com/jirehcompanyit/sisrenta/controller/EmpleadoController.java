@@ -4,12 +4,10 @@ import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.service.EmpleadoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/empleados")
@@ -42,5 +40,20 @@ public class EmpleadoController {
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(empleadoResponse);
+    }
+
+    @GetMapping()
+    public ResponseEntity<EmpleadoResponse> buscarEmpleadoPorCelular(
+            @Valid @RequestParam String celular) {
+        Empleado empleadoEncontrado = empleadoService.buscarEmpleadoPorCelular(celular);
+
+        EmpleadoResponse response = new EmpleadoResponse(
+                empleadoEncontrado.getId(),
+                empleadoEncontrado.getNombre(),
+                empleadoEncontrado.getApellido(),
+                empleadoEncontrado.getCelular(),
+                empleadoEncontrado.getDireccion()
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

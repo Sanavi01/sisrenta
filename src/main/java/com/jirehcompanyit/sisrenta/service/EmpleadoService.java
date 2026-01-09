@@ -1,6 +1,7 @@
 package com.jirehcompanyit.sisrenta.service;
 
 import com.jirehcompanyit.sisrenta.domain.enums.RolEmpleado;
+import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
@@ -42,6 +43,18 @@ public class EmpleadoService {
 
         return empleadoRepository.save(empleado);
     }
+
+    public Empleado buscarEmpleadoPorId(Long id){
+        return empleadoRepository.findById(id)
+                .orElseThrow(() -> new EmpleadoNoEncontradoException("No hay ningun empleado con el id:" + id));
+    }
+
+    public Empleado buscarEmpleadoPorCelular(String celular){
+        return empleadoRepository.findByCelular(celular)
+                .orElseThrow(() -> new EmpleadoNoEncontradoException("No hay ningun empleado registrado con numero de celular " + celular));
+    }
+
+
 
 
 }
