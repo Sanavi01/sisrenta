@@ -44,6 +44,15 @@ public class Empleado {
         this.activo = true;
     }
 
+    public void actualizarEmpleado(String celular, String direccion){
+        if (celular != null) {
+            this.celular = celular;
+        }
+        if (direccion != null) {
+            this.direccion = direccion;
+        }
+    }
+
     public void activar(){
         this.activo = true;
     }

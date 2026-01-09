@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.controller;
 
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.ActualizarEmpleadoRequest;
 import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
@@ -55,5 +56,27 @@ public class EmpleadoController {
                 empleadoEncontrado.getDireccion()
         );
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<EmpleadoResponse> actualizarEmpleado(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody ActualizarEmpleadoRequest request) {
+
+        Empleado empleadoActualizado = empleadoService.actualizarEmpleado(
+                id,
+                request.getCelular(),
+                request.getDireccion()
+        );
+
+        EmpleadoResponse response = new EmpleadoResponse(
+                empleadoActualizado.getId(),
+                empleadoActualizado.getNombre(),
+                empleadoActualizado.getApellido(),
+                empleadoActualizado.getCelular(),
+                empleadoActualizado.getDireccion()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body((response));
     }
 }
