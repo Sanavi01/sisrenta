@@ -1,9 +1,7 @@
-package com.jirehcompanyit.sisrenta.controller.dto;
+package com.jirehcompanyit.sisrenta.controller.dto.alquiler;
 
-import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
