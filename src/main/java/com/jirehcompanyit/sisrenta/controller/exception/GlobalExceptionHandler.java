@@ -1,5 +1,6 @@
 package com.jirehcompanyit.sisrenta.controller.exception;
 
+import com.jirehcompanyit.sisrenta.domain.exceptions.alquiler.AlquilerNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
 import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
@@ -59,6 +60,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmpleadoEstaActivoException.class)
     public ResponseEntity<String> handleEmpleadoEstaActivo(EmpleadoEstaActivoException exception) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
+    }
+
+    @ExceptionHandler(AlquilerNoEncontradoException.class)
+    public ResponseEntity<String> handleAlquilerNoEncontrado(AlquilerNoEncontradoException exception) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());

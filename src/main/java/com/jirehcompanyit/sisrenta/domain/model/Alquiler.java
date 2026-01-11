@@ -98,21 +98,23 @@ public class Alquiler {
         }
     }
 
-    public void agregarItem(String descripcion, int cantidad, int precioUnitario) {
+    public ItemAlquiler agregarItem(String nombreTraje, String descripcion, int cantidad, int precioUnitario) {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
             throw new IllegalStateException("No es posible agregar un item a un alquiler no creado");
         }
         ItemAlquiler itemAlquiler = ItemAlquiler.builder()
                 .alquiler(this)
+                .nombreTraje(nombreTraje)
                 .descripcion(descripcion)
                 .cantidad(cantidad)
                 .precioUnitario(precioUnitario)
                 .build();
 
         this.itemsAlquiler.add(itemAlquiler);
+        return itemAlquiler;
     }
 
-    public int calcularTotal(){
+    public int calcularTotal() {
         return itemsAlquiler.stream()
                 .mapToInt(ItemAlquiler::subtotal)
                 .sum();

@@ -14,11 +14,14 @@ public class ItemAlquiler {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "alquiler_id")
     private Alquiler alquiler;
+
+    @Column(nullable = false)
+    private String nombreTraje;
 
     @Column(nullable = false)
     private String descripcion;
@@ -30,19 +33,23 @@ public class ItemAlquiler {
     private int precioUnitario;
 
     @Builder
-    public ItemAlquiler(Alquiler alquiler, String descripcion, int cantidad, int precioUnitario){
+    public ItemAlquiler(Alquiler alquiler, String nombreTraje, String descripcion, int cantidad, int precioUnitario) {
         this.alquiler = alquiler;
+        this.nombreTraje = nombreTraje;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
+
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("La cantidad debe ser mayor a 0");
+        }
+
+        if (precioUnitario <= 0) {
+            throw new IllegalArgumentException("La precio debe ser mayor a 0");
+        }
     }
 
     public int subtotal() {
         return cantidad * precioUnitario;
     }
-
-
-
-
-
 }
