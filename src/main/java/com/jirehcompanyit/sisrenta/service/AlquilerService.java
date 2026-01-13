@@ -75,11 +75,12 @@ public class AlquilerService {
         clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
 
-        if (alquilerRepository.findAllByClienteId(clienteId).isEmpty()) {
+        List<Alquiler> alquileres =alquilerRepository.findAllByClienteId(clienteId);
+        if (alquileres.isEmpty()) {
             throw new AlquilerNoEncontradoException("El cliente no cuenta con facturas registradas");
         }
 
-        return alquilerRepository.findAllByClienteId(clienteId);
+        return alquileres;
     }
 
 }
