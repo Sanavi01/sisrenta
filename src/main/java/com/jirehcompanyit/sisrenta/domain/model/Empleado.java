@@ -4,6 +4,25 @@ import com.jirehcompanyit.sisrenta.domain.enums.RolEmpleado;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Entidad de dominio que representa un Empleado dentro del sistema.
+ *
+ * <p>Un empleado puede tener alquileres y mantiene un estado
+ * que indica si se encuentra activo o inactivo, a su vez, tiene un rol, puede ser admin, o, empleado</p>
+ *
+ * <p>Reglas de negocio:
+ * <ul>
+ *   <li>Un número de celular es único y no puede estar asociado a más de un empleado.</li>
+ *   <li>Un empleado puede ser activado o desactivado, pero no eliminado del sistema.</li>
+ * </ul>
+ *
+ * <p>La entidad es responsable de mantener la consistencia de su propio estado
+ * mediante métodos de dominio.</p>
+ *
+ * @author Santiago Angarita Avila
+ */
+
+
 @Entity
 @Table(
         name = "empleados",

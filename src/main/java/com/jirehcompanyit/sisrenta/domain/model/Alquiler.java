@@ -12,6 +12,32 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Entidad de dominio que representa un Alquiler dentro del sistema.
+ *
+ * <p>Un alquiler representa una factura, dicha factura cuenta con
+ * fechas de creacion, cancelacion, entrega, devolucion y limite de devolucion,
+ * a su vez cuenta con Estados segun la fase del alquiler en la que se encuentre.
+ * A esta factura se le agregan los item correspondientes al alquiler, ya sean trajes,
+ * disfraces, etc.</p>
+ *
+ * <p>Reglas de negocio:
+ * <ul>
+ *   <li>Un alquiler esta asociado a un cliente y un empleado.</li>
+ *   <li>Un alquiler puede tener varios items.</li>
+ *   <li>Un alquiler puede estar en un solo Estado, los Estados avanzan de manera progresiva.
+ *   El estado cancelado solo puede darse una vez se ha creado el alquiler,
+ *   si ya se ha entregado el alquiler no es posible cancelar el alquiler</li>
+ *   <li></li>
+ * </ul>
+ *
+ * <p>La entidad es responsable de mantener la consistencia de su propio estado
+ * mediante métodos de dominio.</p>
+ *
+ * @author Santiago Angarita Avila
+ */
+
+
 @Entity
 @Table(name = "alquileres")
 @Getter

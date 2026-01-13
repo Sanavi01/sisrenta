@@ -6,6 +6,23 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entidad de dominio que representa un Item de Alquiler dentro del sistema.
+ *
+ * <p>Un item esta asociado a un alquiler, como contenedor de items,
+ * es el que da informacion detallada de las condiciones y caracteristicas de las
+ * prendas que se llevan en el alquiler.</p>
+ *
+ * <p>Reglas de negocio:
+ * <ul>
+ *   <li>Un item tiene que estar asociada a un alquiler</li>
+ *   <li>La cantidad del item tiene que ser mayor a 0.</li>
+ *   <li>El precio del item tiene que ser mayor a 0 .</li>
+ * </ul>
+ *
+ * @author Santiago Angarita Avila
+ */
+
 @Entity
 @Table(name = "items_alquiler")
 @Getter
