@@ -15,6 +15,8 @@ import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AlquilerService {
@@ -66,6 +68,18 @@ public class AlquilerService {
         alquilerRepository.save(alquiler);
 
         return alquiler.getItemsAlquiler().getLast();
+    }
+
+    public List<Alquiler> listarAlquileresPorCliente(Long clienteId) {
+
+        clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
+
+        if (alquilerRepository.findAllByClienteId(clienteId).isEmpty()) {
+            throw new AlquilerNoEncontradoException("El cliente no cuenta con facturas registradas");
+        }
+
+        return alquilerRepository.findAllByClienteId(clienteId);
     }
 
 }
