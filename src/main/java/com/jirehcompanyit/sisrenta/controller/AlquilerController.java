@@ -5,7 +5,6 @@ import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
 import com.jirehcompanyit.sisrenta.domain.model.ItemAlquiler;
 import com.jirehcompanyit.sisrenta.service.AlquilerService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,15 +65,24 @@ public class AlquilerController {
     }
 
     @GetMapping("/clientes/{clienteId}/alquileres")
-    public ResponseEntity<List<DetallesAlquilerResponse>> listarAlquileresCliente(
+    public ResponseEntity<List<ListarAlquileresResponse>> listarAlquileresCliente(
             @PathVariable("clienteId") Long clienteId) {
 
         List<Alquiler> alquileres = alquilerService.listarAlquileresPorCliente(clienteId);
 
-        List<DetallesAlquilerResponse> response = alquileres.stream()
-                .map(DetallesAlquilerResponse::fromEntity)
+        List<ListarAlquileresResponse> response = alquileres.stream()
+                .map(ListarAlquileresResponse::fromEntity)
                 .toList();
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalleAlquilerResponse> verDetalleAlquiler(
+            @PathVariable("id") Long alquilerId) {
+
+        Alquiler alquiler = alquilerService.buscarAlquilerPorId(alquilerId);
+
+        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
     }
 }

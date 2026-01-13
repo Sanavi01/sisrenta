@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
-public class DetallesAlquilerResponse {
+public class ListarAlquileresResponse {
 
     private Long id;
     private String estado;
@@ -19,7 +19,7 @@ public class DetallesAlquilerResponse {
 
     private String itemReferencia;
 
-    public static DetallesAlquilerResponse fromEntity(Alquiler alquiler) {
+    public static ListarAlquileresResponse fromEntity(Alquiler alquiler) {
 
         String itemReferencia = null;
 
@@ -29,7 +29,7 @@ public class DetallesAlquilerResponse {
                     .getNombreTraje();
         }
 
-        return new DetallesAlquilerResponse(
+        return new ListarAlquileresResponse(
                 alquiler.getId(),
                 alquiler.getEstadoAlquiler().name(),
                 alquiler.getFechaCreacion(),
