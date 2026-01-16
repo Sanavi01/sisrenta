@@ -95,7 +95,7 @@ public class Alquiler {
 
     public void marcarComoCancelado() {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
-            throw new AlquilerEstadoException("Solo se puede cancelar un alquiler que haya sido creado y no haya sido entregado");
+            throw new AlquilerEstadoException("Solo se puede cancelar un alquiler que haya sido creado y no haya sido entregado. Estado actual: " + getEstadoAlquiler());
         }
         this.estadoAlquiler = EstadoAlquiler.CANCELADO;
         this.fechaCancelacion = LocalDateTime.now();
@@ -103,7 +103,7 @@ public class Alquiler {
 
     public void marcarComoEntregado() {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
-            throw new AlquilerEstadoException("Solo se puede entregar un alquiler creado");
+            throw new AlquilerEstadoException("Solo se puede entregar un alquiler creado. Estado actual: " + getEstadoAlquiler());
         }
         this.estadoAlquiler = EstadoAlquiler.ENTREGADO;
         this.fechaEntrega = LocalDateTime.now();
@@ -127,7 +127,7 @@ public class Alquiler {
 
     public ItemAlquiler agregarItem(String nombreTraje, String descripcion, int cantidad, int precioUnitario) {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
-            throw new IllegalStateException("No es posible agregar un item a un alquiler no creado");
+            throw new AlquilerEstadoException("Solo es posible agregar items a un alquiler en la fase de creacion del alquiler, posterior a ser entregado no es posible. Estado actual: " + getEstadoAlquiler());
         }
         ItemAlquiler itemAlquiler = ItemAlquiler.builder()
                 .alquiler(this)
