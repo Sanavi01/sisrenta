@@ -5,11 +5,13 @@ import com.jirehcompanyit.sisrenta.controller.dto.cliente.ClienteResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.cliente.RegistrarClienteRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.service.ClienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Clientes", description = "Gestion de Clientes del Sistema")
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {

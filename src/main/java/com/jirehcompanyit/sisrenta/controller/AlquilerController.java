@@ -4,6 +4,7 @@ import com.jirehcompanyit.sisrenta.controller.dto.alquiler.*;
 import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
 import com.jirehcompanyit.sisrenta.domain.model.ItemAlquiler;
 import com.jirehcompanyit.sisrenta.service.AlquilerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Alquileres", description = "Gestion de alquileres del sistema")
 @RestController
 @RequestMapping("/alquileres")
 public class AlquilerController {

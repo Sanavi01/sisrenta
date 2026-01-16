@@ -5,11 +5,13 @@ import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponse;
 import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequest;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.service.EmpleadoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Empleado", description = "Gestion de empleados del sistema")
 @RestController
 @RequestMapping("/empleados")
 public class EmpleadoController {
