@@ -1,6 +1,7 @@
 package com.jirehcompanyit.sisrenta.domain.model;
 
 import com.jirehcompanyit.sisrenta.domain.enums.EstadoAlquiler;
+import com.jirehcompanyit.sisrenta.domain.exceptions.alquiler.AlquilerEstadoException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -102,7 +103,7 @@ public class Alquiler {
 
     public void marcarComoEntregado() {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
-            throw new IllegalStateException("Solo se puede entregar un alquiler creado");
+            throw new AlquilerEstadoException("Solo se puede entregar un alquiler creado");
         }
         this.estadoAlquiler = EstadoAlquiler.ENTREGADO;
         this.fechaEntrega = LocalDateTime.now();

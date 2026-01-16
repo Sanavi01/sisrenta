@@ -149,4 +149,26 @@ public class AlquilerService {
         return alquileres;
     }
 
+    /**
+     * Entregar Alquiler
+     * <p>
+     * Validaciones:
+     * <ul>
+     *     <li>Se verifica que exista un alquiler con el ID dado (Desde el service)</li>
+     *     <li>Se verifica que el alquiler se encuentre marcado como Creado, ningun
+     *     alquiler puede ser marcado como entregado en alguna fase posterior para evitar
+     *     incongruencias (Se valida desde el dominio)</li>
+     * </ul>
+     *
+     * @param id Identificador del alquiler el cual se marcara como entregado
+     * @return Alquiler marcado como entregado
+     */
+
+    public Alquiler entregarAlquiler(Long id) {
+        Alquiler alquiler = buscarAlquilerPorId(id);
+
+        alquiler.marcarComoEntregado();
+
+        return alquiler;
+    }
 }
