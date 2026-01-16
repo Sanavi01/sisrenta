@@ -17,6 +17,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Servicio de la aplicacion responsable de los casos de uso de los alquileres
+ *
+ * <p>Este servicio coordina la interaccion enttre entidades de dpminio, repositorios y
+ * validaciones ncesarias para ejecutar operaciones sobre alquileres, sin contener
+ * logica de negocio propia</p>
+ *
+ * <p> La logica de negocio y validaciones especificas el estado del cliente se delegan
+ * en la entidad {@link Empleado}</p>
+ *
+ * @author Santiago Angarita Avila
+ */
 @Service
 @Transactional
 public class AlquilerService {
@@ -31,6 +43,25 @@ public class AlquilerService {
         this.empleadoRepository = empleadoRepository;
     }
 
+    /**
+     * Registrar Alquiler
+     * <p>Este metodo unicamente crea el alquiler en la base de datos,
+     * asociando al cliente y al empleado. NO CREA ITEMS, solo crea el alquiler</p>
+     *
+     * <p>Validaciones:</p>
+     * <ul>
+     *     <li>Si existe el cliente en la BBDD</li>
+     *     <li>Si el cliente esta activo en el sistema</li>
+     *     <li>Si existe el empleado en la BBDD</li>
+     *     <li>Si el empleado esta activo en el sistema</li>
+     * </ul>
+     *
+     * @param clienteId  Identificador del cliente al que se asociara el alquiler
+     * @param empleadoId Identificador del empleado al que se le asociara el alquiler
+     * @return Alquiler registrado
+     * @throws ClienteNoEncontradoException  Si el cliente no es encontrado con el Id otorgado
+     * @throws EmpleadoNoEncontradoException Si el empleado no es encontrado con el Id otorgado
+     */
     public Alquiler registrarAlquiler(Long clienteId, Long empleadoId) {
 
         Cliente clienteEncontrado = clienteRepository.findById(clienteId)
@@ -59,6 +90,25 @@ public class AlquilerService {
                 .orElseThrow(() -> new AlquilerNoEncontradoException("No se ha encontrado ningun alquiler con el id " + id));
     }
 
+    /**
+     * Agregar item Alquiler
+     *
+     * <p>Este metodo permite agregar items a un alquiler ya creado, agregandolo a una
+     * lista. EL metodo de agregarItem se encuentra en Alquiler</p>
+     * <p>
+     * Validaciones desde el dominio
+     * <ul>
+     *     <li>Desde {@link Alquiler} se valida que el alquiler haya sido creado y se mantenga en este estado</li>
+     *     <li>Desde {@link ItemAlquiler se valida que la cantidad y los precios que sean superiores a 0}</li>
+     * </ul>
+     *
+     * @param alquilerId     Identificador de el alquiler al cual se le va a asociar el item
+     * @param nombreTraje    Nombre que se le pondra al item (traje)
+     * @param descripcion    Descripcion que se le dara al item (Que compone el traje)
+     * @param cantidad       Cantidad de este item a llevar
+     * @param precioUnitario Valor que tiene el item a llevar
+     * @return itemAlquiler registrado
+     */
     public ItemAlquiler agregarItemAlquiler(Long alquilerId, String nombreTraje, String descripcion, Integer cantidad, Integer precioUnitario) {
 
         Alquiler alquiler = buscarAlquilerPorId(alquilerId);
@@ -70,12 +120,28 @@ public class AlquilerService {
         return alquiler.getItemsAlquiler().getLast();
     }
 
+    /**
+     * Listar alquileres por cliente
+     *
+     * <p> El metodo busca si existe un cliente con el ID proporcionado
+     * Luego busca los alquileres asociados a ese ID, agregandolos a una lista de alquileres
+     * </p>
+     * <p>
+     * Validaciones
+     * <li>El Id proporcionado pertenece a un cliente</li>
+     * <li>El cliente tiene alquileres registrados</li>
+     *
+     * @param clienteId Identificador del cliente al cual se le buscaran los alquileres
+     * @return List<Alquiler> alquileres
+     * @throws ClienteNoEncontradoException  Si no se encontro un cliente con el id proporcionado
+     * @throws AlquilerNoEncontradoException Si el cliente no cuenta con alquileres registrados con su ID
+     */
     public List<Alquiler> listarAlquileresPorCliente(Long clienteId) {
 
         clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
 
-        List<Alquiler> alquileres =alquilerRepository.findAllByClienteId(clienteId);
+        List<Alquiler> alquileres = alquilerRepository.findAllByClienteId(clienteId);
         if (alquileres.isEmpty()) {
             throw new AlquilerNoEncontradoException("El cliente no cuenta con facturas registradas");
         }
