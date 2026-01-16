@@ -194,4 +194,12 @@ public class AlquilerService {
 
         return alquiler;
     }
+
+    public Alquiler recibirAlquiler(Long id){
+        Alquiler alquiler = buscarAlquilerPorId(id);
+
+        alquiler.marcarComoDevuelto();
+
+        return alquiler;
+    }
 }

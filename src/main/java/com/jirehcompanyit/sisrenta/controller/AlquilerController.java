@@ -105,4 +105,14 @@ public class AlquilerController {
 
         return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
     }
+
+    @PatchMapping("/{id}/recibir")
+    public ResponseEntity<DetalleAlquilerResponse> recibirAlquiler(
+            @PathVariable("id") Long id){
+
+        Alquiler alquiler = alquilerService.recibirAlquiler(id);
+
+        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+    }
+
 }

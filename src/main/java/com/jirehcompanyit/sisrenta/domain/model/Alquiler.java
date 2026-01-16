@@ -113,7 +113,7 @@ public class Alquiler {
     public void marcarComoDevuelto() {
         if (this.estadoAlquiler != EstadoAlquiler.ENTREGADO
                 && this.estadoAlquiler != EstadoAlquiler.ATRASADO) {
-            throw new IllegalStateException("Solo se puede devolver un alquiler entregado o atrasado");
+            throw new AlquilerEstadoException("Solo se puede devolver un alquiler entregado o atrasado. Estado: " + getEstadoAlquiler());
         }
         this.estadoAlquiler = EstadoAlquiler.DEVUELTO;
         this.fechaDevolucion = LocalDateTime.now();
