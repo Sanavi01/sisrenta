@@ -171,4 +171,27 @@ public class AlquilerService {
 
         return alquiler;
     }
+
+    /**
+     * Cancelar Alquiler
+     * <p>
+     * Validaciones:
+     * <ul>
+     *     <li>Se verifica que exista un alquiler con el ID dado (Desde el service)</li>
+     *     <li>Se verifica que el alquiler se encuentre marcado como Creado, ningun
+     *     alquiler puede ser marcado como Cancelado en alguna fase posterior para evitar
+     *     incongruencias (Se valida desde el dominio)</li>
+     * </ul>
+     *
+     * @param id Identificador del alquiler el cual se marcara como cancelado
+     * @return Alquiler marcado como cancelado
+     */
+
+    public Alquiler cancelarAlquiler(Long id) {
+        Alquiler alquiler = buscarAlquilerPorId(id);
+
+        alquiler.marcarComoCancelado();
+
+        return alquiler;
+    }
 }

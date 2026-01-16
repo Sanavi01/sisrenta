@@ -96,4 +96,13 @@ public class AlquilerController {
 
         return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
     }
+
+    @PatchMapping("/{id}/cancelar")
+    public ResponseEntity<DetalleAlquilerResponse> cancelarAlquiler(
+            @PathVariable("id") Long id){
+
+        Alquiler alquiler = alquilerService.cancelarAlquiler(id);
+
+        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+    }
 }

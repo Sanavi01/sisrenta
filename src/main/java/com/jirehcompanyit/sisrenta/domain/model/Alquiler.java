@@ -95,7 +95,7 @@ public class Alquiler {
 
     public void marcarComoCancelado() {
         if (this.estadoAlquiler != EstadoAlquiler.CREADO) {
-            throw new IllegalStateException("Solo se puede cancelar un alquiler que haya sido creado");
+            throw new AlquilerEstadoException("Solo se puede cancelar un alquiler que haya sido creado y no haya sido entregado");
         }
         this.estadoAlquiler = EstadoAlquiler.CANCELADO;
         this.fechaCancelacion = LocalDateTime.now();
