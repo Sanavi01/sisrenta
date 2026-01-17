@@ -26,6 +26,8 @@ public class DetalleAlquilerResponse {
 
     private List<ItemAlquilerResponse> itemsAlquiler;
 
+    private Integer valorTotal;
+
     public static DetalleAlquilerResponse fromEntity(Alquiler alquiler) {
 
         List<ItemAlquilerResponse> itemsAlquiler = alquiler.getItemsAlquiler()
@@ -43,7 +45,8 @@ public class DetalleAlquilerResponse {
                 alquiler.getFechaLimiteDevolucion(),
                 alquiler.getFechaDevolucion(),
                 alquiler.getEstadoAlquiler().name(),
-                itemsAlquiler
+                itemsAlquiler,
+                alquiler.calcularTotal()
         );
 
     }

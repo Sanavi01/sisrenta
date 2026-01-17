@@ -19,6 +19,8 @@ public class ListarAlquileresResponse {
 
     private String itemReferencia;
 
+    private Integer valorTotal;
+
     public static ListarAlquileresResponse fromEntity(Alquiler alquiler) {
 
         String itemReferencia = null;
@@ -36,7 +38,8 @@ public class ListarAlquileresResponse {
                 alquiler.getFechaEntrega(),
                 alquiler.getFechaLimiteDevolucion(),
                 alquiler.getFechaDevolucion(),
-                itemReferencia
+                itemReferencia,
+                alquiler.calcularTotal()
         );
     }
 }
