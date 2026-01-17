@@ -28,7 +28,7 @@ public class ListarAlquileresResponse {
         if (!alquiler.getItemsAlquiler().isEmpty()) {
             itemReferencia = alquiler.getItemsAlquiler()
                     .getFirst()
-                    .getNombreTraje();
+                    .getNombreTraje().concat(" +" + alquiler.getItemsAlquiler().size() + " items");
         }
 
         return new ListarAlquileresResponse(
