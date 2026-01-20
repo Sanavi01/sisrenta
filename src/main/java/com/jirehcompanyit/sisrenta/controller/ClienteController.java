@@ -1,8 +1,8 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.ActualizarCelularClienteRequest;
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.ClienteResponse;
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.RegistrarClienteRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.ActualizarCelularClienteRequestDTO;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.ClienteResponseDTO;
+import com.jirehcompanyit.sisrenta.controller.dto.cliente.RegistrarClienteRequestDTO;
 import com.jirehcompanyit.sisrenta.domain.model.Cliente;
 import com.jirehcompanyit.sisrenta.service.ClienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,15 +26,15 @@ public class ClienteController {
     // POST /clientes
     // ---------------------------
     @PostMapping
-    public ResponseEntity<ClienteResponse> registrarCliente(
-            @Valid @RequestBody RegistrarClienteRequest request) {
+    public ResponseEntity<ClienteResponseDTO> registrarCliente(
+            @Valid @RequestBody RegistrarClienteRequestDTO request) {
         Cliente cliente = clienteService.registrarCliente(
                 request.getNombre(),
                 request.getApellido(),
                 request.getCelular()
         );
 
-        ClienteResponse response = new ClienteResponse(
+        ClienteResponseDTO response = new ClienteResponseDTO(
                 cliente.getId(),
                 cliente.getNombre(),
                 cliente.getApellido(),
@@ -47,11 +47,11 @@ public class ClienteController {
     // GET /clientes?celular=...
     // ---------------------------
     @GetMapping
-    public ResponseEntity<ClienteResponse> buscarClientePorCelular(
+    public ResponseEntity<ClienteResponseDTO> buscarClientePorCelular(
             @Valid @RequestParam String celular) {
         Cliente cliente = clienteService.buscarClientePorCelular(celular);
 
-        ClienteResponse response = new ClienteResponse(
+        ClienteResponseDTO response = new ClienteResponseDTO(
                 cliente.getId(),
                 cliente.getNombre(),
                 cliente.getApellido(),
@@ -65,9 +65,9 @@ public class ClienteController {
     // ---------------------------
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ClienteResponse> actualizarCelularCliente(
+    public ResponseEntity<ClienteResponseDTO> actualizarCelularCliente(
             @PathVariable("id") Long id,
-            @Valid @RequestBody ActualizarCelularClienteRequest request) {
+            @Valid @RequestBody ActualizarCelularClienteRequestDTO request) {
 
         System.out.println("id Controller: " + id);
         Cliente clienteEditado = clienteService.actualizarCelular(
@@ -75,7 +75,7 @@ public class ClienteController {
                 request.getNuevoCelular()
         );
 
-        ClienteResponse response = new ClienteResponse(
+        ClienteResponseDTO response = new ClienteResponseDTO(
                 clienteEditado.getId(),
                 clienteEditado.getNombre(),
                 clienteEditado.getApellido(),
@@ -90,12 +90,12 @@ public class ClienteController {
     // ---------------------------
 
     @PatchMapping("/{id}/activar")
-    public ResponseEntity<ClienteResponse> activarCliente(
+    public ResponseEntity<ClienteResponseDTO> activarCliente(
             @PathVariable("id") Long id) {
 
         Cliente clienteActivado = clienteService.activarCliente(id);
 
-        ClienteResponse response = new ClienteResponse(
+        ClienteResponseDTO response = new ClienteResponseDTO(
                 clienteActivado.getId(),
                 clienteActivado.getNombre(),
                 clienteActivado.getApellido(),
@@ -109,12 +109,12 @@ public class ClienteController {
     // -------
 
     @PatchMapping("/{id}/desactivar")
-    public ResponseEntity<ClienteResponse> desactivarCliente(
+    public ResponseEntity<ClienteResponseDTO> desactivarCliente(
             @PathVariable("id") Long id) {
 
         Cliente clienteDesactivado = clienteService.desactivarCliente(id);
 
-        ClienteResponse response = new ClienteResponse(
+        ClienteResponseDTO response = new ClienteResponseDTO(
                 clienteDesactivado.getId(),
                 clienteDesactivado.getNombre(),
                 clienteDesactivado.getApellido(),

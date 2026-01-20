@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
-public class RegistrarAlquilerResponse {
+public class RegistrarAlquilerResponseDTO {
 
     private Long cliente_id;
     private Long empleado_id;

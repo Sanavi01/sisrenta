@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ItemAlquilerResponse {
+public class ItemAlquilerResponseDTO {
 
     private Long id;
     private String nombreTraje;
@@ -14,8 +14,8 @@ public class ItemAlquilerResponse {
     private Integer cantidad;
     private Integer precioUnitario;
 
-    public static ItemAlquilerResponse fromEntity(ItemAlquiler item) {
-        return new ItemAlquilerResponse(
+    public static ItemAlquilerResponseDTO fromEntity(ItemAlquiler item) {
+        return new ItemAlquilerResponseDTO(
                 item.getId(),
                 item.getNombreTraje(),
                 item.getDescripcion(),

@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AgregarItemAlquilerRequest {
+public class AgregarItemAlquilerRequestDTO {
 
     @NotBlank(message = "No se le asigno un nombre al traje")
     private String nombreTraje;

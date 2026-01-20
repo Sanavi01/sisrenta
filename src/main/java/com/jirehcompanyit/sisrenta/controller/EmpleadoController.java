@@ -1,8 +1,8 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.ActualizarEmpleadoRequest;
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponse;
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequest;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.ActualizarEmpleadoRequestDTO;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponseDTO;
+import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequestDTO;
 import com.jirehcompanyit.sisrenta.domain.model.Empleado;
 import com.jirehcompanyit.sisrenta.service.EmpleadoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,8 +23,8 @@ public class EmpleadoController {
     }
 
     @PostMapping
-    public ResponseEntity<EmpleadoResponse> registrarEmpleado(
-            @RequestBody RegistrarEmpleadoRequest request) {
+    public ResponseEntity<EmpleadoResponseDTO> registrarEmpleado(
+            @RequestBody RegistrarEmpleadoRequestDTO request) {
 
         System.out.println("Cliente enviado Controller: " + request.getNombre());
         Empleado empleado = empleadoService.registrarEmpleado(
@@ -34,7 +34,7 @@ public class EmpleadoController {
                 request.getDireccion()
         );
 
-        EmpleadoResponse empleadoResponse = new EmpleadoResponse(
+        EmpleadoResponseDTO empleadoResponse = new EmpleadoResponseDTO(
                 empleado.getId(),
                 empleado.getNombre(),
                 empleado.getApellido(),
@@ -46,11 +46,11 @@ public class EmpleadoController {
     }
 
     @GetMapping()
-    public ResponseEntity<EmpleadoResponse> buscarEmpleadoPorCelular(
+    public ResponseEntity<EmpleadoResponseDTO> buscarEmpleadoPorCelular(
             @Valid @RequestParam String celular) {
         Empleado empleadoEncontrado = empleadoService.buscarEmpleadoPorCelular(celular);
 
-        EmpleadoResponse response = new EmpleadoResponse(
+        EmpleadoResponseDTO response = new EmpleadoResponseDTO(
                 empleadoEncontrado.getId(),
                 empleadoEncontrado.getNombre(),
                 empleadoEncontrado.getApellido(),
@@ -61,9 +61,9 @@ public class EmpleadoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<EmpleadoResponse> actualizarEmpleado(
+    public ResponseEntity<EmpleadoResponseDTO> actualizarEmpleado(
             @PathVariable("id") Long id,
-            @Valid @RequestBody ActualizarEmpleadoRequest request) {
+            @Valid @RequestBody ActualizarEmpleadoRequestDTO request) {
 
         Empleado empleadoActualizado = empleadoService.actualizarEmpleado(
                 id,
@@ -71,7 +71,7 @@ public class EmpleadoController {
                 request.getDireccion()
         );
 
-        EmpleadoResponse response = new EmpleadoResponse(
+        EmpleadoResponseDTO response = new EmpleadoResponseDTO(
                 empleadoActualizado.getId(),
                 empleadoActualizado.getNombre(),
                 empleadoActualizado.getApellido(),
@@ -83,12 +83,12 @@ public class EmpleadoController {
     }
 
     @PatchMapping("/{id}/activar")
-    public ResponseEntity<EmpleadoResponse> activarEmpleado(
+    public ResponseEntity<EmpleadoResponseDTO> activarEmpleado(
             @PathVariable("id") Long id) {
 
         Empleado empleado = empleadoService.activarEmpleado(id);
 
-        EmpleadoResponse response = new EmpleadoResponse(
+        EmpleadoResponseDTO response = new EmpleadoResponseDTO(
                 empleado.getId(),
                 empleado.getNombre(),
                 empleado.getApellido(),
@@ -100,12 +100,12 @@ public class EmpleadoController {
     }
 
     @PatchMapping("/{id}/desactivar")
-    public ResponseEntity<EmpleadoResponse> desactivarEmpleado(
+    public ResponseEntity<EmpleadoResponseDTO> desactivarEmpleado(
             @PathVariable("id") Long id) {
 
         Empleado empleado = empleadoService.desactivarEmpleado(id);
 
-        EmpleadoResponse response = new EmpleadoResponse(
+        EmpleadoResponseDTO response = new EmpleadoResponseDTO(
                 empleado.getId(),
                 empleado.getNombre(),
                 empleado.getApellido(),

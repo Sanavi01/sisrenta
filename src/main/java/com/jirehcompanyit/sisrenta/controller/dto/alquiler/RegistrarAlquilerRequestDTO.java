@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
-public class RegistrarAlquilerRequest {
+public class RegistrarAlquilerRequestDTO {
 
     @NotNull(message = "No se asigno un id de un cliente")
     private Long clienteId;

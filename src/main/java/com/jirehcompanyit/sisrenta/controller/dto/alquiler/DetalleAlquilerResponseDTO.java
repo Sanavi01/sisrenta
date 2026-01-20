@@ -1,6 +1,6 @@
 package com.jirehcompanyit.sisrenta.controller.dto.alquiler;
 
-import com.jirehcompanyit.sisrenta.controller.dto.item_alquiler.ItemAlquilerResponse;
+import com.jirehcompanyit.sisrenta.controller.dto.item_alquiler.ItemAlquilerResponseDTO;
 import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class DetalleAlquilerResponse {
+public class DetalleAlquilerResponseDTO {
 
     private Long id;
     private String nombreCliente;
@@ -24,18 +24,18 @@ public class DetalleAlquilerResponse {
 
     private String estado;
 
-    private List<ItemAlquilerResponse> itemsAlquiler;
+    private List<ItemAlquilerResponseDTO> itemsAlquiler;
 
     private Integer valorTotal;
 
-    public static DetalleAlquilerResponse fromEntity(Alquiler alquiler) {
+    public static DetalleAlquilerResponseDTO fromEntity(Alquiler alquiler) {
 
-        List<ItemAlquilerResponse> itemsAlquiler = alquiler.getItemsAlquiler()
+        List<ItemAlquilerResponseDTO> itemsAlquiler = alquiler.getItemsAlquiler()
                 .stream()
-                .map(ItemAlquilerResponse::fromEntity)
+                .map(ItemAlquilerResponseDTO::fromEntity)
                 .toList();
 
-        return new DetalleAlquilerResponse(
+        return new DetalleAlquilerResponseDTO(
                 alquiler.getId(),
                 alquiler.getCliente().getNombre().concat(" ".concat(alquiler.getCliente().getApellido())),
                 alquiler.getEmpleado().getNombre().concat(" ").concat(alquiler.getEmpleado().getApellido()),

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AgregarItemAlquilerResponse {
+public class AgregarItemAlquilerResponseDTO {
 
     private Long alquilerId;
     private Long itemAlquilerId;

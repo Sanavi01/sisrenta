@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
-public class ListarAlquileresResponse {
+public class ListarAlquileresResponseDTO {
 
     private Long id;
     private String estado;
@@ -21,7 +21,7 @@ public class ListarAlquileresResponse {
 
     private Integer valorTotal;
 
-    public static ListarAlquileresResponse fromEntity(Alquiler alquiler) {
+    public static ListarAlquileresResponseDTO fromEntity(Alquiler alquiler) {
 
         String itemReferencia = null;
 
@@ -31,7 +31,7 @@ public class ListarAlquileresResponse {
                     .getNombreTraje().concat(" +" + alquiler.getItemsAlquiler().size() + " items");
         }
 
-        return new ListarAlquileresResponse(
+        return new ListarAlquileresResponseDTO(
                 alquiler.getId(),
                 alquiler.getEstadoAlquiler().name(),
                 alquiler.getFechaCreacion(),

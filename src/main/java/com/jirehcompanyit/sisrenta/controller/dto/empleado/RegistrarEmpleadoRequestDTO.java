@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class RegistrarEmpleadoRequest {
+public class RegistrarEmpleadoRequestDTO {
     @NotBlank(message = "No se registro el nombre del empleado")
     private String nombre;
     @NotBlank(message = "No se registro el apellido del empleado")

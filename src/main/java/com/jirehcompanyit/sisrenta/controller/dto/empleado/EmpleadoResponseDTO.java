@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActualizarEmpleadoRequest {
+public class EmpleadoResponseDTO {
 
+    private Long id;
+    private String nombre;
+    private String apellido;
     private String celular;
     private String direccion;
-
 }

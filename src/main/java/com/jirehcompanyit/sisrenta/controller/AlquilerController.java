@@ -24,8 +24,8 @@ public class AlquilerController {
     }
 
     @PostMapping
-    public ResponseEntity<RegistrarAlquilerResponse> registrarAlquiler(
-            @RequestBody RegistrarAlquilerRequest request) {
+    public ResponseEntity<RegistrarAlquilerResponseDTO> registrarAlquiler(
+            @RequestBody RegistrarAlquilerRequestDTO request) {
 
         System.out.println("Id recibido: " + request.getClienteId());
         Alquiler alquiler = alquilerService.registrarAlquiler(
@@ -33,7 +33,7 @@ public class AlquilerController {
                 request.getEmpleadoId()
         );
 
-        RegistrarAlquilerResponse response = new RegistrarAlquilerResponse(
+        RegistrarAlquilerResponseDTO response = new RegistrarAlquilerResponseDTO(
                 alquiler.getCliente().getId(),
                 alquiler.getEmpleado().getId(),
                 alquiler.getId(),
@@ -43,9 +43,9 @@ public class AlquilerController {
     }
 
     @PatchMapping("/{id}/agregarItem")
-    public ResponseEntity<AgregarItemAlquilerResponse> agregarItemAlquiler(
+    public ResponseEntity<AgregarItemAlquilerResponseDTO> agregarItemAlquiler(
             @PathVariable("id") Long alquilerId,
-            @Valid @RequestBody AgregarItemAlquilerRequest request) {
+            @Valid @RequestBody AgregarItemAlquilerRequestDTO request) {
 
         ItemAlquiler itemAlquiler = alquilerService.agregarItemAlquiler(
                 alquilerId,
@@ -55,7 +55,7 @@ public class AlquilerController {
                 request.getPrecioUnitario()
         );
 
-        AgregarItemAlquilerResponse response = new AgregarItemAlquilerResponse(
+        AgregarItemAlquilerResponseDTO response = new AgregarItemAlquilerResponseDTO(
                 alquilerId,
                 itemAlquiler.getId(),
                 itemAlquiler.getNombreTraje(),
@@ -67,52 +67,52 @@ public class AlquilerController {
     }
 
     @GetMapping("/clientes/{clienteId}/alquileres")
-    public ResponseEntity<List<ListarAlquileresResponse>> listarAlquileresCliente(
+    public ResponseEntity<List<ListarAlquileresResponseDTO>> listarAlquileresCliente(
             @PathVariable("clienteId") Long clienteId) {
 
         List<Alquiler> alquileres = alquilerService.listarAlquileresPorCliente(clienteId);
 
-        List<ListarAlquileresResponse> response = alquileres.stream()
-                .map(ListarAlquileresResponse::fromEntity)
+        List<ListarAlquileresResponseDTO> response = alquileres.stream()
+                .map(ListarAlquileresResponseDTO::fromEntity)
                 .toList();
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DetalleAlquilerResponse> verDetalleAlquiler(
+    public ResponseEntity<DetalleAlquilerResponseDTO> verDetalleAlquiler(
             @PathVariable("id") Long alquilerId) {
 
         Alquiler alquiler = alquilerService.buscarAlquilerPorId(alquilerId);
 
-        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+        return ResponseEntity.ok(DetalleAlquilerResponseDTO.fromEntity(alquiler));
     }
 
     @PatchMapping("/{id}/entregar")
-    public ResponseEntity<DetalleAlquilerResponse> entregarAlquiler(
+    public ResponseEntity<DetalleAlquilerResponseDTO> entregarAlquiler(
             @PathVariable("id") Long id) {
 
         Alquiler alquiler = alquilerService.entregarAlquiler(id);
 
-        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+        return ResponseEntity.ok(DetalleAlquilerResponseDTO.fromEntity(alquiler));
     }
 
     @PatchMapping("/{id}/cancelar")
-    public ResponseEntity<DetalleAlquilerResponse> cancelarAlquiler(
+    public ResponseEntity<DetalleAlquilerResponseDTO> cancelarAlquiler(
             @PathVariable("id") Long id){
 
         Alquiler alquiler = alquilerService.cancelarAlquiler(id);
 
-        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+        return ResponseEntity.ok(DetalleAlquilerResponseDTO.fromEntity(alquiler));
     }
 
     @PatchMapping("/{id}/recibir")
-    public ResponseEntity<DetalleAlquilerResponse> recibirAlquiler(
+    public ResponseEntity<DetalleAlquilerResponseDTO> recibirAlquiler(
             @PathVariable("id") Long id){
 
         Alquiler alquiler = alquilerService.recibirAlquiler(id);
 
-        return ResponseEntity.ok(DetalleAlquilerResponse.fromEntity(alquiler));
+        return ResponseEntity.ok(DetalleAlquilerResponseDTO.fromEntity(alquiler));
     }
 
 }
