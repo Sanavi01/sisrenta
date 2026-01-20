@@ -1,8 +1,8 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.alquiler.*;
-import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
-import com.jirehcompanyit.sisrenta.domain.model.ItemAlquiler;
+import com.jirehcompanyit.sisrenta.model.Alquiler;
+import com.jirehcompanyit.sisrenta.model.ItemAlquiler;
+import com.jirehcompanyit.sisrenta.dto.alquiler.*;
 import com.jirehcompanyit.sisrenta.service.AlquilerService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

@@ -1,9 +1,9 @@
 package com.jirehcompanyit.sisrenta.service;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteYaExisteException;
-import com.jirehcompanyit.sisrenta.domain.model.Cliente;
+import com.jirehcompanyit.sisrenta.exception.cliente.ClienteEstaActivoException;
+import com.jirehcompanyit.sisrenta.exception.cliente.ClienteNoEncontradoException;
+import com.jirehcompanyit.sisrenta.exception.cliente.ClienteYaExisteException;
+import com.jirehcompanyit.sisrenta.model.Cliente;
 import com.jirehcompanyit.sisrenta.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -66,7 +66,7 @@ public class ClienteService {
 
     public Cliente buscarClientePorCelular(String celular) {
         return clienteRepository.findClienteByCelular(celular)
-                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado"));
+                .orElseThrow(() -> new ClienteNoEncontradoException("Cliente no encontrado con el celular " + celular));
     }
 
     public Cliente buscarClientePorId(Long id) {

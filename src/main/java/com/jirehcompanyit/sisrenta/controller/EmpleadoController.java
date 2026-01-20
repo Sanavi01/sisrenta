@@ -1,9 +1,9 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.ActualizarEmpleadoRequestDTO;
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.EmpleadoResponseDTO;
-import com.jirehcompanyit.sisrenta.controller.dto.empleado.RegistrarEmpleadoRequestDTO;
-import com.jirehcompanyit.sisrenta.domain.model.Empleado;
+import com.jirehcompanyit.sisrenta.dto.empleado.ActualizarEmpleadoRequestDTO;
+import com.jirehcompanyit.sisrenta.dto.empleado.EmpleadoResponseDTO;
+import com.jirehcompanyit.sisrenta.dto.empleado.RegistrarEmpleadoRequestDTO;
+import com.jirehcompanyit.sisrenta.model.Empleado;
 import com.jirehcompanyit.sisrenta.service.EmpleadoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

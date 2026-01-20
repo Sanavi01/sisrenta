@@ -1,6 +1,6 @@
 package com.jirehcompanyit.sisrenta.repository;
 
-import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
+import com.jirehcompanyit.sisrenta.model.Alquiler;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

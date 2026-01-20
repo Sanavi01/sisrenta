@@ -1,10 +1,10 @@
 package com.jirehcompanyit.sisrenta.service;
 
-import com.jirehcompanyit.sisrenta.domain.enums.RolEmpleado;
-import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoEstaActivoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoYaExisteException;
-import com.jirehcompanyit.sisrenta.domain.model.Empleado;
+import com.jirehcompanyit.sisrenta.enums.RolEmpleado;
+import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoEstaActivoException;
+import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoNoEncontradoException;
+import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoYaExisteException;
+import com.jirehcompanyit.sisrenta.model.Empleado;
 import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,0 +1,17 @@
+package com.jirehcompanyit.sisrenta.dto.alquiler;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class AgregarItemAlquilerResponseDTO {
+
+    private Long alquilerId;
+    private Long itemAlquilerId;
+    private String nombreTraje;
+    private String descripcion;
+    private Integer cantidad;
+    private Integer precioUnitario;
+
+}

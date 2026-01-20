@@ -1,9 +1,9 @@
 package com.jirehcompanyit.sisrenta.controller;
 
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.ActualizarCelularClienteRequestDTO;
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.ClienteResponseDTO;
-import com.jirehcompanyit.sisrenta.controller.dto.cliente.RegistrarClienteRequestDTO;
-import com.jirehcompanyit.sisrenta.domain.model.Cliente;
+import com.jirehcompanyit.sisrenta.dto.cliente.ActualizarCelularClienteRequestDTO;
+import com.jirehcompanyit.sisrenta.dto.cliente.ClienteResponseDTO;
+import com.jirehcompanyit.sisrenta.dto.cliente.RegistrarClienteRequestDTO;
+import com.jirehcompanyit.sisrenta.model.Cliente;
 import com.jirehcompanyit.sisrenta.service.ClienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

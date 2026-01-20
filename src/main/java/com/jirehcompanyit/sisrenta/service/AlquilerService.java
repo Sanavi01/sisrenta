@@ -1,14 +1,14 @@
 package com.jirehcompanyit.sisrenta.service;
 
-import com.jirehcompanyit.sisrenta.domain.exceptions.alquiler.AlquilerNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteEstaActivoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.cliente.ClienteNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoEstaActivoException;
-import com.jirehcompanyit.sisrenta.domain.exceptions.empleado.EmpleadoNoEncontradoException;
-import com.jirehcompanyit.sisrenta.domain.model.Alquiler;
-import com.jirehcompanyit.sisrenta.domain.model.Cliente;
-import com.jirehcompanyit.sisrenta.domain.model.Empleado;
-import com.jirehcompanyit.sisrenta.domain.model.ItemAlquiler;
+import com.jirehcompanyit.sisrenta.exception.alquiler.AlquilerNoEncontradoException;
+import com.jirehcompanyit.sisrenta.exception.cliente.ClienteEstaActivoException;
+import com.jirehcompanyit.sisrenta.exception.cliente.ClienteNoEncontradoException;
+import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoEstaActivoException;
+import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoNoEncontradoException;
+import com.jirehcompanyit.sisrenta.model.Alquiler;
+import com.jirehcompanyit.sisrenta.model.Cliente;
+import com.jirehcompanyit.sisrenta.model.Empleado;
+import com.jirehcompanyit.sisrenta.model.ItemAlquiler;
 import com.jirehcompanyit.sisrenta.repository.AlquilerRepository;
 import com.jirehcompanyit.sisrenta.repository.ClienteRepository;
 import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
