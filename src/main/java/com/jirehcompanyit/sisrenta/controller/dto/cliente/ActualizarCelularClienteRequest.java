@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActualizarCelularClienteRequest {
-    @NotBlank
+    @NotBlank(message = "No se digito el nuevo celular")
     private String nuevoCelular;
 }

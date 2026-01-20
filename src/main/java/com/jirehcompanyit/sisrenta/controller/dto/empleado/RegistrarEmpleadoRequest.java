@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class RegistrarEmpleadoRequest {
-    @NotBlank
+    @NotBlank(message = "No se registro el nombre del empleado")
     private String nombre;
-    @NotBlank
+    @NotBlank(message = "No se registro el apellido del empleado")
     private String apellido;
-    @NotBlank
+    @NotBlank(message = "No se registro el celular del empleado")
     private String celular;
-    @NotBlank
+    @NotBlank(message = "No se registro la direccion del empleado")
     private String direccion;
 
 }
