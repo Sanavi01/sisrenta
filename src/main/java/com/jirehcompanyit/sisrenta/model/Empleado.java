@@ -46,6 +46,11 @@ public class Empleado {
     @Column
     private String direccion;
 
+    @Column(unique = true)
+    private String username;
+
+    private String password;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RolEmpleado rol;
@@ -54,12 +59,14 @@ public class Empleado {
     private boolean activo;
 
     @Builder
-    public Empleado(String nombre, String apellido, String celular, String direccion, RolEmpleado rol) {
+    public Empleado(String nombre, String apellido, String celular, String direccion, RolEmpleado rol, String username, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.direccion = direccion;
         this.rol = rol;
+        this.username = username;
+        this.password = password;
         this.activo = true;
     }
 

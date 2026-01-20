@@ -6,6 +6,7 @@ import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoNoEncontradoExcept
 import com.jirehcompanyit.sisrenta.exception.empleado.EmpleadoYaExisteException;
 import com.jirehcompanyit.sisrenta.model.Empleado;
 import com.jirehcompanyit.sisrenta.repository.EmpleadoRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +28,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmpleadoService {
 
     private final EmpleadoRepository empleadoRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public EmpleadoService(EmpleadoRepository empleadoRepository) {
+    public EmpleadoService(EmpleadoRepository empleadoRepository, PasswordEncoder passwordEncoder) {
         this.empleadoRepository = empleadoRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -48,7 +51,7 @@ public class EmpleadoService {
      * @throws EmpleadoYaExisteException Si ya existe un empleado que tenga el celular a registrar asociado
      */
 
-    public Empleado registrarEmpleado(String nombre, String apellido, String celular, String direccion) {
+    public Empleado registrarEmpleado(String nombre, String apellido, String celular, String direccion, String username, String password) {
 
         empleadoRepository.findByCelular(celular)
                 .ifPresent(empleadoEncontrado -> {
@@ -68,6 +71,8 @@ public class EmpleadoService {
                 .celular(celular)
                 .direccion(direccion)
                 .rol(RolEmpleado.EMPLEADO)
+                .username(username)
+                .password(passwordEncoder.encode(password))
                 .build();
 
         return empleadoRepository.save(empleado);

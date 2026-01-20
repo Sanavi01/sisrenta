@@ -17,5 +17,9 @@ public class RegistrarEmpleadoRequestDTO {
     private String celular;
     @NotBlank(message = "No se registro la direccion del empleado")
     private String direccion;
+    @NotBlank(message = "No se registro el usuario del empleado")
+    private String username;
+    @NotBlank(message = "No se registro la contraseña del empleado")
+    private String password;
 
 }

@@ -31,7 +31,9 @@ public class EmpleadoController {
                 request.getNombre(),
                 request.getApellido(),
                 request.getCelular(),
-                request.getDireccion()
+                request.getDireccion(),
+                request.getUsername(),
+                request.getPassword()
         );
 
         EmpleadoResponseDTO empleadoResponse = new EmpleadoResponseDTO(
